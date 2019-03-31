@@ -12,7 +12,8 @@ final class HomeController extends AbstractController
     /**
      * @Route("/")
      */
-    public function index() {
+    public function index()
+    {
         return $this->json('hola');
     }
 }
