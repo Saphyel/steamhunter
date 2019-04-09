@@ -61,6 +61,7 @@
             "@auto-scripts"
         ],
         "cs-fixer": "php-cs-fixer fix --verbose --diff-format=udiff",
+        "cs-checker": "php-cs-fixer fix --verbose --diff-format=udiff --dry-run",
         "phpstan": "phpstan analyse src tests --memory-limit=200m"
     },
     "conflict": {
