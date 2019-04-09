@@ -10,12 +10,13 @@ return PhpCsFixer\Config::create()
         '@Symfony:risky' => true,
         '@PHP71Migration' => true,
         '@PHP71Migration:risky' => true,
+        '@PHPUnit60Migration:risky' => true,
         'array_syntax' => ['syntax' => 'short'],
-        'declare_strict_types' => true,
         'method_chaining_indentation' => true,
         'no_useless_else' => true,
-        'no_useless_return' => true,
         'ordered_imports' => true,
-        'php_unit_test_annotation' => ['style' => 'annotation', 'case' => 'snake'],
+        'php_unit_test_annotation' => true,
+        'php_unit_mock' => true,
+        'php_unit_method_casing' => true,
     ])
     ->setFinder($finder);

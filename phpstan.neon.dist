@@ -2,6 +2,10 @@ parameters:
     level: 7
     symfony:
         container_xml_path: '%rootDir%/../../../var/cache/dev/srcApp_KernelDevDebugContainer.xml'
+    autoload_files:
+        - bin/.phpunit/phpunit-6.5/vendor/autoload.php
 
 includes:
     - vendor/phpstan/phpstan-symfony/extension.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-phpunit/rules.neon
