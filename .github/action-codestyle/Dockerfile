@@ -5,7 +5,5 @@ LABEL "com.github.actions.description"="Run CS-Fixer and PHPStan to find code sm
 LABEL "com.github.actions.icon"="mic"
 LABEL "com.github.actions.color"="purple"
 
-RUN composer install
-
 ADD entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
