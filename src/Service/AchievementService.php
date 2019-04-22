@@ -30,8 +30,8 @@ final class AchievementService
 
     public function getAchievements(string $userId, string $appId): GameProgression
     {
-        $details = $this->repository->findGameDetails($appId);
         $progression = $this->repository->findAchievements($userId, $appId);
+        $details = $this->repository->findGameDetails($appId);
         $list = [];
         $i = 0;
         foreach ($details as $detail) {

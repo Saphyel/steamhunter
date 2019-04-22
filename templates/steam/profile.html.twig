@@ -13,28 +13,27 @@
             </div>
         </div>
     </div>
-    <div class="columns is-multiline">
+    <table class="table is-striped">
+        <thead><tr><th>Logo</th><th>Name</th><th>Played</th><th>Progression</th></tr></thead>
+        <tbody>
         {% for game in games %}
-            <div class="column is-half">
-                <div class="card">
-                    <header class="card-header"><p class="card-header-title">{{ game.name }}</p></header>
-                    <div class="card-image">
-                        <figure class="image"><img
-                                    alt="{{ game.name }} logo"
-                                    src="http://media.steampowered.com/steamcommunity/public/images/apps/{{ game.id }}/{{ game.logo }}.jpg"
-                            /></figure>
-                    </div>
-                    <div class="card-content">
-                        App ID: {{ game.id }}<br/>
-                        Played: {{ (game.played/60)|round }} hours
-                    </div>
-                    <footer class="card-footer">
-                        <a class="card-footer-item" href="{{ path('app_home_index') }}">
-                            Achievements
-                        </a>
-                    </footer>
-                </div>
-            </div>
+            <tr>
+                <td>
+                    {% if game.logo %}
+                        <figure class="image">
+                            <img alt="{{ game.name }} logo"
+                                 src="http://media.steampowered.com/steamcommunity/public/images/apps/{{ game.id }}/{{ game.logo }}.jpg"/>
+                        </figure>
+                    {% else %}
+                        No logo
+                    {% endif %}
+                </td>
+                <td>{{ game.name }}</td>
+                <td>{{ (game.played/60)|round }} hours</td>
+                <td><a href="{{ path('app_steam_achievements', {'steamId': steamId, 'appId': game.id}) }}">Link</a></td>
+            </tr>
         {% endfor %}
-    </div>
+        </tbody>
+        <tfoot><tr><th>Logo</th><th>Name</th><th>Played</th><th>Progression</th></tr></tfoot>
+    </table>
 {% endblock %}

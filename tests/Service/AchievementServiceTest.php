@@ -35,7 +35,7 @@ class AchievementServiceTest extends TestCase
     /**
      * @dataProvider steamDataProvider
      */
-    public function testGetAchievements(GameProgression $expected, string $achievements, string $details): void
+    public function testGetAchievements(GameProgression $expected, string $details, string $achievements): void
     {
         $this->client->method('fetch')->will($this->onConsecutiveCalls($details, $achievements));
         $result = $this->service->getAchievements('1234', '321');
@@ -46,15 +46,6 @@ class AchievementServiceTest extends TestCase
 
     public function steamDataProvider(): Generator
     {
-        $achievements = '{
-            "gameName": "Grim Dawn",
-            "achievements":[{
-                "apiname": "ACH001",
-                "achieved": 1,
-                "unlocktime": 1546119922,
-            }]
-        }';
-
         // http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?appid=219990&key=X
         $details = '{"game":{"gameName":"","gameVersion":"43","availableGameStats":{"achievements":[{"name":"ACH001","defaultvalue":0,"displayName":"Monster Slayer","hidden":0,"description":"Eradicate 25 Heroic Monsters (marked by a Star).","icon":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/219990/89b967769ec85cfe515ec24f131cfea8a5a208c7.jpg","icongray":"https://steamcdn-a.akamaihd.net/steamcommunity/public/images/apps/219990/94f0586732cbbceb1aa6dcc3835a61e47f38fef5.jpg"}]}}}';
 
@@ -73,6 +64,6 @@ class AchievementServiceTest extends TestCase
         $expected->title = 'Grim Dawn';
         $expected->achievements = [$achievement];
 
-        yield [$expected, $achievements, $details];
+        yield [$expected, $details, $achievements];
     }
 }

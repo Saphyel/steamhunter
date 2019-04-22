@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Service\AchievementService;
 use App\Service\ProfileService;
+use GuzzleHttp\Exception\RequestException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -44,8 +45,12 @@ final class SteamController extends AbstractController
      */
     public function achievements(string $steamId, string $appId): array
     {
-        return $this->container->get('serializer')->normalize(
-            $this->achievementService->getAchievements($steamId, $appId)
-        );
+        try {
+            return $this->container->get('serializer')->normalize(
+                $this->achievementService->getAchievements($steamId, $appId)
+            );
+        } catch (RequestException $exception) {
+            throw $this->createNotFoundException('Requested app has no stats.');
+        }
     }
 }

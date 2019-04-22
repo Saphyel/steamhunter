@@ -13,7 +13,9 @@ final class GameTransformer implements TransformerInterface
         $object = new Game();
         $object->id = $data['appid'];
         $object->name = $data['name'];
-        $object->logo = $data['img_logo_url'];
+        if (!empty($data['img_logo_url'])) {
+            $object->logo = $data['img_logo_url'];
+        }
         $object->played = $data['playtime_forever'];
 
         return $object;
