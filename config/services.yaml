@@ -13,3 +13,8 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    GuzzleHttp\Client: ~
+
+    App\Http\Steam:
+        arguments: ['@GuzzleHttp\Client', '%steam_api_url%', '%env(STEAM_API_KEY)%']

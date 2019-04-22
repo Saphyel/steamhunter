@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ title }}: {{ achievements|length }} achievements{% endblock %}
+{% block body %}
+    <table class="table is-striped">
+        <thead>
+            <tr><th>Icon</th><th>Hidden</th><th>Achieved</th><th>Name</th><th>Description</th></tr>
+        </thead>
+        <tbody>
+        {% for game in achievements %}
+            <tr>
+                <td>
+                    <figure class="image"><img alt="{{ game.name }} logo" src="{{ game.icon }}"/></figure>
+                </td>
+                <td><input type="checkbox" disabled {% if game.hidden == 1 %}checked{% endif %}/></td>
+                <td><input type="checkbox" disabled {% if game.achieved == 1 %}checked{% endif %}/></td>
+                <td>{{ game.name }}</td>
+                <td>{{ game.description }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr><th>Icon</th><th>Hidden</th><th>Achieved</th><th>Name</th><th>Description</th></tr>
+        </tfoot>
+    </table>
+{% endblock %}

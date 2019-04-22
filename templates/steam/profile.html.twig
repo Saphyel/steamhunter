@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ personaName }} profile{% endblock %}
+{% block body %}
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <header class="card-header"><p class="card-header-title">{{ personaName }}</p></header>
+                <div class="card-content">
+                    Steam ID: {{ steamId }}<br/>
+                    Real name: {{ realName }}<br/>
+                    Country code: {{ countryCode }}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns is-multiline">
+        {% for game in games %}
+            <div class="column is-half">
+                <div class="card">
+                    <header class="card-header"><p class="card-header-title">{{ game.name }}</p></header>
+                    <div class="card-image">
+                        <figure class="image"><img
+                                    alt="{{ game.name }} logo"
+                                    src="http://media.steampowered.com/steamcommunity/public/images/apps/{{ game.id }}/{{ game.logo }}.jpg"
+                            /></figure>
+                    </div>
+                    <div class="card-content">
+                        App ID: {{ game.id }}<br/>
+                        Played: {{ (game.played/60)|round }} hours
+                    </div>
+                    <footer class="card-footer">
+                        <a class="card-footer-item" href="{{ path('app_home_index') }}">
+                            Achievements
+                        </a>
+                    </footer>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

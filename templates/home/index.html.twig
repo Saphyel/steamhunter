@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+{% block title %}Homepage{% endblock %}
+{% block body %}
+    <form method="post" action="{{ path('app_home_index') }}">
+        <label for="name">Search profile: </label><input type="text" name="name"/>
+        <button>Search</button>
+    </form>
+{% endblock %}

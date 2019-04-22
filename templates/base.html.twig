@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <title>{% block title %}{% endblock %} - Steamhunter</title>
+    <meta name="application-name" content="Steamhunter">
+    <meta property="og:site_name" content="Steamhunter">
+    <meta property="og:locale" content="en_GB">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="/images/logo.png">
+    <link rel="shortcut icon" href="/images/favicon.ico">
+    <link rel="icon" sizes="64x64 32x32 24x24 16x16" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-dark bg-light" role="navigation" aria-label="main navigation">
+    <a class=" navbar-brand" href="{{ path('app_home_index') }}">
+        <img class="d-inline-block align-top" src="/images/logo.png" alt="Steamhunter logo" width="30" height="30">
+        <span class="font-weight-bold text-dark">:: Steamhunter</span>
+    </a>
+</nav>
+<main role="main" class="container is-fluid">
+    <h1 class="mt-4 title is-spaced">{{ block('title') }}</h1>
+    {% block body %}{% endblock %}
+</main>
+
+<footer class="footer mt-5 mb-4">
+    <div class="container">
+        <p>© 2019 Saphyel.</p>
+    </div>
+</footer>
+{% block javascripts %}{% endblock %}
+</body>
+</html>
