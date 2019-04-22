@@ -1,4 +1,6 @@
 {
+    "name": "saphyel/steamhunter",
+    "description": "Help to hunt all your achievements.",
     "type": "project",
     "license": "proprietary",
     "require": {
@@ -7,11 +9,12 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "ext-zend-opcache": "*",
-        "sensio/framework-extra-bundle": "^5.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "sensio/framework-extra-bundle": "^5.3",
         "symfony/cache": "4.2.*",
         "symfony/console": "4.2.*",
         "symfony/dotenv": "4.2.*",
-        "symfony/flex": "^1.1",
+        "symfony/flex": "^1.2",
         "symfony/framework-bundle": "4.2.*",
         "symfony/monolog-bundle": "^3.3",
         "symfony/serializer-pack": "^1.0",
@@ -23,7 +26,9 @@
         "phpstan/phpstan": "^0.11.5",
         "phpstan/phpstan-phpunit": "^0.11.0",
         "phpstan/phpstan-symfony": "^0.11.2",
-        "symfony/phpunit-bridge": "4.2.*"
+        "phpunit/phpunit": "^8.1",
+        "symfony/debug-bundle": "4.2.*",
+        "symfony/profiler-pack": "^1.0"
     },
     "config": {
         "preferred-install": {
@@ -60,8 +65,9 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+        "test": "phpunit --testdox",
         "cs-fixer": "php-cs-fixer fix --verbose --diff-format=udiff",
-        "cs-checker": "php-cs-fixer fix --verbose --diff-format=udiff --dry-run",
+        "cs-checker": "@cs-fixer --dry-run",
         "phpstan": "phpstan analyse src tests --memory-limit=200m"
     },
     "conflict": {

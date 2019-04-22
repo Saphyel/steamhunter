@@ -6,9 +6,10 @@ services:
         ports:
             - "8000:80"
         volumes:
-            - "./:/var/www/html:cached"
-            - "./var:/var/www/html/var:delegated"
-            - "./vendor:/var/www/html/vendor:delegated"
+            - ./:/var/www/html:rw,cached
+            - ./var/www/html/var/cache/
+            - ./var/log:/var/www/html/var/log:delegated
+            - ./vendor:/var/www/html/vendor:delegated
         logging:
             driver: "json-file"
             options:
@@ -23,8 +24,8 @@ services:
         ports:
             - 8080:80
         volumes:
-            - ".docker/nginx/default.conf:/etc/nginx/conf.d/default.conf"
-            - "./:/var/www/html:ro"
+            - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
+            - ./:/var/www/html:ro
         logging:
             driver: "json-file"
             options:
