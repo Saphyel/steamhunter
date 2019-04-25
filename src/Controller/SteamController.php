@@ -9,12 +9,12 @@ use App\Service\AchievementService;
 use App\Service\ProfileService;
 use GuzzleHttp\Exception\RequestException;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Cache(smaxage="1 day", mustRevalidate=true)
+ * @Cache(smaxage="86400", maxage="86400")
  */
 final class SteamController extends AbstractController
 {
@@ -31,13 +31,15 @@ final class SteamController extends AbstractController
 
     /**
      * @Route("/{name}", methods={"GET"})
-     * @Template
      */
-    public function profile(string $name): array
+    public function profile(string $name): Response
     {
         try {
-            return $this->container->get('serializer')->normalize(
-                $this->profileService->getProfile($this->profileService->getUserId($name))
+            return $this->render(
+                'steam/profile.html.twig',
+                $this->container->get('serializer')->normalize(
+                    $this->profileService->getProfile($this->profileService->getUserId($name))
+                )
             );
         } catch (NotFoundException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
@@ -46,13 +48,15 @@ final class SteamController extends AbstractController
 
     /**
      * @Route("/{steamId}/{appId}", methods={"GET"})
-     * @Template
      */
-    public function achievements(string $steamId, string $appId): array
+    public function achievements(string $steamId, string $appId): Response
     {
         try {
-            return $this->container->get('serializer')->normalize(
-                $this->achievementService->getAchievements($steamId, $appId)
+            return $this->render(
+                'steam/achievements.html.twig',
+                $this->container->get('serializer')->normalize(
+                    $this->achievementService->getAchievements($steamId, $appId)
+                )
             );
         } catch (RequestException $exception) {
             throw $this->createNotFoundException('Requested app has no stats.');
