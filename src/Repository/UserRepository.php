@@ -18,11 +18,11 @@ class UserRepository
         $this->client = $client;
     }
 
-    public function findUserId(string $name): string
+    public function findUserId(string $name): array
     {
         $response = $this->client->fetch(self::RESOURCE.'ResolveVanityURL/v1/', ['vanityurl' => $name]);
 
-        return json_decode($response, true)['response']['steamid'];
+        return json_decode($response, true)['response'];
     }
 
     public function findSummary(string $userId): array

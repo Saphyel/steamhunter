@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Service;
 
+use App\Exception\NotFoundException;
 use App\Http\Steam;
 use App\Model\Game;
 use App\Model\Profile;
@@ -35,12 +36,23 @@ class ProfileServiceTest extends TestCase
     }
 
     /**
-     * @dataProvider idDataProvider
+     * @dataProvider idValidDataProvider
      */
     public function testGetUserId(string $expected, string $payload): void
     {
         $this->client->method('fetch')->willReturn($payload);
         $this->assertEquals($expected, $this->service->getUserId('123'));
+    }
+
+    /**
+     * @dataProvider idInvalidDataProvider
+     */
+    public function testGetUserIdError(string $expected, string $payload): void
+    {
+        $this->client->method('fetch')->willReturn($payload);
+        $this->expectException($expected);
+
+        $this->service->getUserId('123');
     }
 
     /**
@@ -78,9 +90,15 @@ class ProfileServiceTest extends TestCase
         yield [$expected, $user, $player];
     }
 
-    public function idDataProvider(): Generator
+    public function idValidDataProvider(): Generator
     {
         // http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?vanityurl=Saphyel&key=X
         yield ['76561198109613067', '{"response":{"steamid":"76561198109613067","success":1}}'];
+    }
+
+    public function idInvalidDataProvider(): Generator
+    {
+        // http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?vanityurl=Saphyel&key=X
+        yield [NotFoundException::class, '{"response":{"success":42,"message":"No match"}}'];
     }
 }

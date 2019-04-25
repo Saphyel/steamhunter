@@ -35,9 +35,9 @@ class AchievementServiceTest extends TestCase
     /**
      * @dataProvider steamDataProvider
      */
-    public function testGetAchievements(GameProgression $expected, string $details, string $achievements): void
+    public function testGetAchievements(GameProgression $expected, string $achievements, string $details): void
     {
-        $this->client->method('fetch')->will($this->onConsecutiveCalls($details, $achievements));
+        $this->client->method('fetch')->willReturnOnConsecutiveCalls($achievements, $details);
         $result = $this->service->getAchievements('1234', '321');
 
         $this->assertEquals($expected->title, $result->title);
@@ -64,6 +64,6 @@ class AchievementServiceTest extends TestCase
         $expected->title = 'Grim Dawn';
         $expected->achievements = [$achievement];
 
-        yield [$expected, $details, $achievements];
+        yield [$expected, $achievements, $details];
     }
 }

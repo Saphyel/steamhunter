@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Exception\NotFoundException;
 use App\Service\AchievementService;
 use App\Service\ProfileService;
 use GuzzleHttp\Exception\RequestException;
@@ -34,9 +35,13 @@ final class SteamController extends AbstractController
      */
     public function profile(string $name): array
     {
-        return $this->container->get('serializer')->normalize(
-            $this->profileService->getProfile($this->profileService->getUserId($name))
-        );
+        try {
+            return $this->container->get('serializer')->normalize(
+                $this->profileService->getProfile($this->profileService->getUserId($name))
+            );
+        } catch (NotFoundException $exception) {
+            throw $this->createNotFoundException($exception->getMessage());
+        }
     }
 
     /**

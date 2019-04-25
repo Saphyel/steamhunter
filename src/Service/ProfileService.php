@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\Exception\NotFoundException;
 use App\Model\Profile;
 use App\Repository\PlayerRepository;
 use App\Repository\UserRepository;
@@ -35,7 +36,13 @@ final class ProfileService
 
     public function getUserId(string $username): string
     {
-        return $this->userRepository->findUserId($username);
+        $response = $this->userRepository->findUserId($username);
+
+        if (1 !== $response['success']) {
+            throw new NotFoundException('No results.');
+        }
+
+        return $response['steamid'];
     }
 
     public function getProfile(string $userId): Profile

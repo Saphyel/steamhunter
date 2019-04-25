@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Transformer;
 
 use App\Model\Achievement;
-use function array_key_exists;
 
 final class AchievementTransformer implements TransformerInterface
 {
@@ -18,7 +17,7 @@ final class AchievementTransformer implements TransformerInterface
         $object->hidden = $data['hidden'];
         $object->achieved = $data['achieved'];
 
-        if (array_key_exists('description', $data)) {
+        if (\array_key_exists('description', $data)) {
             $object->description = $data['description'];
         }
 

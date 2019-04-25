@@ -5,10 +5,10 @@
     "license": "proprietary",
     "require": {
         "php": "^7.1.3",
+        "ext-apcu": "*",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "ext-json": "*",
-        "ext-zend-opcache": "*",
         "guzzlehttp/guzzle": "^6.3",
         "sensio/framework-extra-bundle": "^5.3",
         "symfony/cache": "4.2.*",
