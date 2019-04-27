@@ -8,6 +8,7 @@ use App\Exception\NotFoundException;
 use App\Service\AchievementService;
 use App\Service\ProfileService;
 use GuzzleHttp\Exception\RequestException;
+use Psr\Cache\CacheItemPoolInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,48 +19,53 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class SteamController extends AbstractController
 {
-    /** @var ProfileService */
-    private $profileService;
-    /** @var AchievementService */
-    private $achievementService;
+    /** @var CacheItemPoolInterface */
+    private $cache;
 
-    public function __construct(ProfileService $profileService, AchievementService $achievementService)
+    public function __construct(CacheItemPoolInterface $cache)
     {
-        $this->profileService = $profileService;
-        $this->achievementService = $achievementService;
+        $this->cache = $cache;
     }
 
     /**
      * @Route("/{name}", methods={"GET"})
      */
-    public function profile(string $name): Response
+    public function profile(string $name, ProfileService $service): Response
     {
         try {
-            return $this->render(
-                'steam/profile.html.twig',
-                $this->container->get('serializer')->normalize(
-                    $this->profileService->getProfile($this->profileService->getUserId($name))
-                )
-            );
+            $item = $this->cache->getItem('profile_'.md5($name));
+            if (!$item->isHit()) {
+                $item->set($service->getProfile($service->getUserId($name)));
+                $this->cache->save($item);
+            }
         } catch (NotFoundException $exception) {
             throw $this->createNotFoundException($exception->getMessage());
         }
+
+        return $this->render(
+            'steam/profile.html.twig',
+            $this->container->get('serializer')->normalize($item->get())
+        );
     }
 
     /**
      * @Route("/{steamId}/{appId}", methods={"GET"})
      */
-    public function achievements(string $steamId, string $appId): Response
+    public function achievements(string $steamId, string $appId, AchievementService $service): Response
     {
         try {
-            return $this->render(
-                'steam/achievements.html.twig',
-                $this->container->get('serializer')->normalize(
-                    $this->achievementService->getAchievements($steamId, $appId)
-                )
-            );
+            $item = $this->cache->getItem('achievements_'.md5($steamId).'_'.md5($appId));
+            if (!$item->isHit()) {
+                $item->set($service->getAchievements($steamId, $appId));
+                $this->cache->save($item);
+            }
         } catch (RequestException $exception) {
             throw $this->createNotFoundException('Requested app has no stats.');
         }
+
+        return $this->render(
+            'steam/achievements.html.twig',
+            $this->container->get('serializer')->normalize($item->get())
+        );
     }
 }
