@@ -7,7 +7,7 @@ services:
             - "8000:80"
         volumes:
             - ./:/var/www/html:rw,cached
-            - ./var/www/html/var/cache/
+            - app-cache:/var/www/html/var/cache/
             - ./var/log:/var/www/html/var/log:delegated
             - ./vendor:/var/www/html/vendor:delegated
         logging:
@@ -33,3 +33,6 @@ services:
                 max-file: "10"
         links:
             - app
+
+volumes:
+  app-cache: ~
