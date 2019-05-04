@@ -15,10 +15,11 @@
                 <td><input type="checkbox" disabled {% if game.achieved == 1 %}checked{% endif %}/></td>
                 <td>{{ game.name }}</td>
                 <td>{{ game.description }}</td>
-                <td>
+                <td>{% if game.achieved != 1 %}
                     <a href="https://www.youtube.com/results?sp=EgIQAQ%253D%253D&search_query={{ title|url_encode }}+{{ game.name|url_encode }}">
                         Link
                     </a>
+                    {% endif %}
                 </td>
             </tr>
         {% endfor %}
