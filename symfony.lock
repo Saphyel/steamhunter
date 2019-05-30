@@ -50,15 +50,6 @@
             ".php_cs.dist"
         ]
     },
-    "guzzlehttp/guzzle": {
-        "version": "6.3.3"
-    },
-    "guzzlehttp/promises": {
-        "version": "v1.3.1"
-    },
-    "guzzlehttp/psr7": {
-        "version": "1.5.2"
-    },
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
@@ -167,17 +158,11 @@
     "psr/container": {
         "version": "1.0.0"
     },
-    "psr/http-message": {
-        "version": "1.0.1"
-    },
     "psr/log": {
         "version": "1.1.0"
     },
     "psr/simple-cache": {
         "version": "1.0.1"
-    },
-    "ralouphie/getallheaders": {
-        "version": "2.0.5"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
@@ -227,6 +212,9 @@
     "symfony/cache": {
         "version": "v4.2.4"
     },
+    "symfony/cache-contracts": {
+        "version": "v1.1.1"
+    },
     "symfony/config": {
         "version": "v4.2.4"
     },
@@ -242,9 +230,6 @@
             "bin/console",
             "config/bootstrap.php"
         ]
-    },
-    "symfony/contracts": {
-        "version": "v1.0.2"
     },
     "symfony/debug": {
         "version": "v4.2.4"
@@ -269,6 +254,9 @@
     },
     "symfony/event-dispatcher": {
         "version": "v4.2.4"
+    },
+    "symfony/event-dispatcher-contracts": {
+        "version": "v1.1.1"
     },
     "symfony/filesystem": {
         "version": "v4.2.4"
@@ -307,6 +295,12 @@
             "src/Kernel.php"
         ]
     },
+    "symfony/http-client": {
+        "version": "v4.3.0"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v1.1.1"
+    },
     "symfony/http-foundation": {
         "version": "v4.2.4"
     },
@@ -315,6 +309,9 @@
     },
     "symfony/inflector": {
         "version": "v4.2.4"
+    },
+    "symfony/mime": {
+        "version": "v4.3.0"
     },
     "symfony/monolog-bridge": {
         "version": "v4.2.4"
@@ -336,10 +333,16 @@
     "symfony/options-resolver": {
         "version": "v4.2.4"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.10.0"
     },
     "symfony/polyfill-php72": {
+        "version": "v1.11.0"
+    },
+    "symfony/polyfill-php73": {
         "version": "v1.11.0"
     },
     "symfony/process": {
@@ -374,6 +377,9 @@
     },
     "symfony/serializer-pack": {
         "version": "v1.0.2"
+    },
+    "symfony/service-contracts": {
+        "version": "v1.1.2"
     },
     "symfony/stopwatch": {
         "version": "v4.2.4"

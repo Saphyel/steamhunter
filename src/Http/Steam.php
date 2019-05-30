@@ -4,29 +4,26 @@ declare(strict_types=1);
 
 namespace App\Http;
 
-use GuzzleHttp\ClientInterface;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Steam
 {
-    /** @var ClientInterface */
+    /** @var HttpClientInterface */
     private $client;
-    /** @var string */
-    private $url;
     /** @var string */
     private $apiKey;
 
-    public function __construct(ClientInterface $client, string $url, string $apiKey)
+    public function __construct(HttpClientInterface $client, string $apiKey)
     {
         $this->client = $client;
-        $this->url = $url;
         $this->apiKey = $apiKey;
     }
 
     public function fetch(string $endpoint, array $query): string
     {
         $query['key'] = $this->apiKey;
-        $content = $this->client->request('GET', $this->url.$endpoint, ['timeout' => 9, 'query' => $query]);
+        $content = $this->client->request('GET', $endpoint, ['query' => $query]);
 
-        return $content->getBody()->getContents();
+        return $content->getContent();
     }
 }

@@ -1,0 +1,9 @@
+framework:
+    http_client:
+        max_host_connections: 5
+        default_options:
+            http_version: '1.1'
+            timeout: 9
+        scoped_clients:
+            steam.client:
+                base_uri: 'https://api.steampowered.com/'
