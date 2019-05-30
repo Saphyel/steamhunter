@@ -7,10 +7,10 @@ namespace App\Controller;
 use App\Exception\NotFoundException;
 use App\Service\AchievementService;
 use App\Service\ProfileService;
-use GuzzleHttp\Exception\RequestException;
 use Psr\Cache\CacheItemPoolInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpClient\Exception\TransportException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -59,7 +59,7 @@ final class SteamController extends AbstractController
                 $item->set($service->getAchievements($steamId, $appId));
                 $this->cache->save($item);
             }
-        } catch (RequestException $exception) {
+        } catch (TransportException $exception) {
             throw $this->createNotFoundException('Requested app has no stats.');
         }
 
