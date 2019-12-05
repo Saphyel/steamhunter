@@ -8,7 +8,10 @@ use App\Model\Achievement;
 
 final class AchievementTransformer implements TransformerInterface
 {
-    public function transform($data)
+    /**
+     * @param mixed[] $data
+     */
+    public function transform(array $data): Achievement
     {
         $object = new Achievement();
         $object->id = $data['name'];

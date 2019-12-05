@@ -18,6 +18,9 @@ class StatsRepository
         $this->client = $client;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findAchievements(string $userId, string $appId): array
     {
         $response = $this->client->fetch(self::RESOURCE.'GetPlayerAchievements/v1/', ['steamid' => $userId, 'appid' => $appId]);
@@ -25,6 +28,9 @@ class StatsRepository
         return json_decode($response, true)['playerstats'];
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findGameDetails(string $appId): array
     {
         $response = $this->client->fetch(self::RESOURCE.'GetSchemaForGame/v2/', ['appid' => $appId]);

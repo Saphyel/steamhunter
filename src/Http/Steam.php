@@ -19,6 +19,9 @@ class Steam
         $this->apiKey = $apiKey;
     }
 
+    /**
+     * @param mixed[] $query
+     */
     public function fetch(string $endpoint, array $query): string
     {
         $query['key'] = $this->apiKey;

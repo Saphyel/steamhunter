@@ -18,6 +18,6 @@ final class Profile
     public $realName;
     /** @var string */
     public $countryCode;
-    /** @var array */
+    /** @var Game[] */
     public $games;
 }

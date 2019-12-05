@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ title }}: {{ achievements|length }} achievements{% endblock %}
+{% block title %}{{ achievements.title }}: {{ achievements.achievements|length }} achievements{% endblock %}
 {% block body %}
     <table class="table is-striped">
         <thead>
             <tr><th>Icon</th><th>Hidden</th><th>Achieved</th><th>Name</th><th>Description</th><th>Search</th></tr>
         </thead>
         <tbody>
-        {% for game in achievements %}
+        {% for game in achievements.achievements %}
             <tr>
                 <td>
                     <figure class="image"><img alt="{{ game.name }} logo" src="{{ game.icon }}"/></figure>
@@ -16,7 +16,7 @@
                 <td>{{ game.name }}</td>
                 <td>{{ game.description }}</td>
                 <td>{% if game.achieved != 1 %}
-                    <a href="https://www.youtube.com/results?sp=EgIQAQ%253D%253D&search_query={{ title|url_encode }}+{{ game.name|url_encode }}">
+                    <a href="https://www.youtube.com/results?sp=EgIQAQ%253D%253D&search_query={{ achievements.title|url_encode }}+{{ game.name|url_encode }}">
                         Link
                     </a>
                     {% endif %}

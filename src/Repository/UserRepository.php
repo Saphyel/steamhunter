@@ -18,6 +18,9 @@ class UserRepository
         $this->client = $client;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findUserId(string $name): array
     {
         $response = $this->client->fetch(self::RESOURCE.'ResolveVanityURL/v1/', ['vanityurl' => $name]);
@@ -25,6 +28,9 @@ class UserRepository
         return json_decode($response, true)['response'];
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findSummary(string $userId): array
     {
         $response = $this->client->fetch(self::RESOURCE.'GetPlayerSummaries/v2/', ['steamids' => $userId]);

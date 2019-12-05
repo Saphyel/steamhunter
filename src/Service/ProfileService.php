@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Exception\NotFoundException;
+use App\Model\Game;
 use App\Model\Profile;
 use App\Repository\PlayerRepository;
 use App\Repository\UserRepository;
@@ -53,6 +54,11 @@ final class ProfileService
         return $this->profileTransformer->transform($summary);
     }
 
+    /**
+     * @param mixed[] $games
+     *
+     * @return Game[]
+     */
     private function gameList(array $games): array
     {
         $list = [];

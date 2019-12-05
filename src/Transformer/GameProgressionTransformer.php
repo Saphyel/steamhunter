@@ -8,7 +8,10 @@ use App\Model\GameProgression;
 
 final class GameProgressionTransformer implements TransformerInterface
 {
-    public function transform($data)
+    /**
+     * @param mixed[] $data
+     */
+    public function transform(array $data): GameProgression
     {
         $object = new GameProgression();
         $object->title = $data['title'];

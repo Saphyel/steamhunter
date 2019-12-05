@@ -42,10 +42,7 @@ final class SteamController extends AbstractController
             throw $this->createNotFoundException($exception->getMessage());
         }
 
-        return $this->render(
-            'steam/profile.html.twig',
-            $this->container->get('serializer')->normalize($item->get())
-        );
+        return $this->render('steam/profile.html.twig', ['profile' => $item->get()]);
     }
 
     /**
@@ -63,9 +60,6 @@ final class SteamController extends AbstractController
             throw $this->createNotFoundException('Requested app has no stats.');
         }
 
-        return $this->render(
-            'steam/achievements.html.twig',
-            $this->container->get('serializer')->normalize($item->get())
-        );
+        return $this->render('steam/achievements.html.twig', ['achievements' => $item->get()]);
     }
 }

@@ -18,6 +18,9 @@ class PlayerRepository
         $this->client = $client;
     }
 
+    /**
+     * @return mixed[]
+     */
     public function findGames(string $userId): array
     {
         $response = $this->client->fetch(

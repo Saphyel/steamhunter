@@ -8,6 +8,6 @@ final class GameProgression
 {
     /** @var string */
     public $title;
-    /** @var array */
+    /** @var Achievement[] */
     public $achievements;
 }

@@ -8,7 +8,10 @@ use App\Model\Profile;
 
 final class ProfileTransformer implements TransformerInterface
 {
-    public function transform($data)
+    /**
+     * @param mixed[] $data
+     */
+    public function transform(array $data): Profile
     {
         $object = new Profile();
         $object->steamId = $data['steamid'];

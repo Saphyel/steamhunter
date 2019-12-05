@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ personaName }} profile{% endblock %}
+{% block title %}{{ profile.personaName }} profile{% endblock %}
 {% block body %}
     <div class="columns">
         <div class="column">
             <div class="card">
-                <header class="card-header"><p class="card-header-title">{{ personaName }}</p></header>
+                <header class="card-header"><p class="card-header-title">{{ profile.personaName }}</p></header>
                 <div class="card-content">
-                    Steam ID: {{ steamId }}<br/>
-                    Real name: {{ realName }}<br/>
-                    Country code: {{ countryCode }}
+                    Steam ID: {{ profile.steamId }}<br/>
+                    Real name: {{ profile.realName }}<br/>
+                    Country code: {{ profile.countryCode }}
                 </div>
             </div>
         </div>
@@ -16,7 +16,7 @@
     <table class="table is-striped">
         <thead><tr><th>Logo</th><th>Name</th><th>Played</th><th>Progression</th></tr></thead>
         <tbody>
-        {% for game in games %}
+        {% for game in profile.games %}
             <tr>
                 <td>
                     {% if game.logo %}
@@ -30,7 +30,7 @@
                 </td>
                 <td>{{ game.name }}</td>
                 <td>{{ (game.played/60)|round }} hours</td>
-                <td><a href="{{ path('app_steam_achievements', {'steamId': steamId, 'appId': game.id}) }}">Link</a></td>
+                <td><a href="{{ path('app_steam_achievements', {'steamId': profile.steamId, 'appId': game.id}) }}">Link</a></td>
             </tr>
         {% endfor %}
         </tbody>

@@ -8,7 +8,10 @@ use App\Model\Game;
 
 final class GameTransformer implements TransformerInterface
 {
-    public function transform($data)
+    /**
+     * @param mixed[] $data
+     */
+    public function transform(array $data): Game
     {
         $object = new Game();
         $object->id = $data['appid'];
