@@ -44,6 +44,9 @@ class AchievementServiceTest extends TestCase
         $this->assertEquals($expected->achievements[0], $result->achievements[0]);
     }
 
+    /**
+     * @return Generator<mixed[]>
+     */
     public function steamDataProvider(): Generator
     {
         // http://api.steampowered.com/ISteamUserStats/GetSchemaForGame/v2/?appid=219990&key=X

@@ -64,6 +64,9 @@ class ProfileServiceTest extends TestCase
         $this->assertEquals($expected, $this->service->getProfile('123'));
     }
 
+    /**
+     * @return Generator<mixed[]>
+     */
     public function summaryDataProvider(): Generator
     {
         // http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v2/?steamids=76561197960435530&key=X
@@ -90,12 +93,18 @@ class ProfileServiceTest extends TestCase
         yield [$expected, $user, $player];
     }
 
+    /**
+     * @return Generator<string[]>
+     */
     public function idValidDataProvider(): Generator
     {
         // http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?vanityurl=Saphyel&key=X
         yield ['76561198109613067', '{"response":{"steamid":"76561198109613067","success":1}}'];
     }
 
+    /**
+     * @return Generator<string[]>
+     */
     public function idInvalidDataProvider(): Generator
     {
         // http://api.steampowered.com/ISteamUser/ResolveVanityURL/v1/?vanityurl=Saphyel&key=X
