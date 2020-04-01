@@ -46,6 +46,8 @@ class ProfileServiceTest extends TestCase
 
     /**
      * @dataProvider idInvalidDataProvider
+     *
+     * @param class-string<\Throwable> $expected
      */
     public function testGetUserIdError(string $expected, string $payload): void
     {

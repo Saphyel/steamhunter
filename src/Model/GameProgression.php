@@ -6,8 +6,7 @@ namespace App\Model;
 
 final class GameProgression
 {
-    /** @var string */
-    public $title;
+    public string $title;
     /** @var Achievement[] */
-    public $achievements;
+    public array $achievements;
 }

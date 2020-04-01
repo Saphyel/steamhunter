@@ -17,8 +17,8 @@ final class AchievementTransformer implements TransformerInterface
         $object->id = $data['name'];
         $object->name = $data['displayName'];
         $object->icon = $data['icon'];
-        $object->hidden = $data['hidden'];
-        $object->achieved = $data['achieved'];
+        $object->hidden = (bool) $data['hidden'];
+        $object->achieved = (bool) $data['achieved'];
 
         if (\array_key_exists('description', $data)) {
             $object->description = $data['description'];

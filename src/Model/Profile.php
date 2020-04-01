@@ -6,18 +6,12 @@ namespace App\Model;
 
 final class Profile
 {
-    /** @var string */
-    public $steamId;
-    /** @var string */
-    public $personaName;
-    /** @var string */
-    public $avatar;
-    /** @var string */
-    public $url;
-    /** @var string */
-    public $realName;
-    /** @var string */
-    public $countryCode;
+    public string $steamId;
+    public string $personaName;
+    public string $avatar;
+    public string $url;
+    public string $realName;
+    public string $countryCode;
     /** @var Game[] */
-    public $games;
+    public array $games;
 }

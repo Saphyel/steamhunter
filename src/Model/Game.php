@@ -6,12 +6,8 @@ namespace App\Model;
 
 final class Game
 {
-    /** @var int */
-    public $id;
-    /** @var string */
-    public $name;
-    /** @var int */
-    public $played;
-    /** @var string */
-    public $logo;
+    public int $id;
+    public string $name;
+    public int $played;
+    public string $logo;
 }

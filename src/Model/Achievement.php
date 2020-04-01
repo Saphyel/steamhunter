@@ -6,16 +6,10 @@ namespace App\Model;
 
 final class Achievement
 {
-    /** @var string */
-    public $id;
-    /** @var string */
-    public $name;
-    /** @var string */
-    public $description;
-    /** @var string */
-    public $icon;
-    /** @var bool */
-    public $hidden;
-    /** @var bool */
-    public $achieved;
+    public string $id;
+    public string $name;
+    public string $description;
+    public string $icon;
+    public bool $hidden;
+    public bool $achieved;
 }
