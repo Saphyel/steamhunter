@@ -18,9 +18,8 @@ use PHPUnit\Framework\TestCase;
 class AchievementServiceTest extends TestCase
 {
     /** @var MockObject&Steam */
-    private $client;
-    /** @var AchievementService */
-    private $service;
+    private MockObject $client;
+    private AchievementService $service;
 
     protected function setUp(): void
     {

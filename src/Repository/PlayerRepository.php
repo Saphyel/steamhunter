@@ -10,8 +10,7 @@ class PlayerRepository
 {
     private const RESOURCE = 'IPlayerService/';
 
-    /** @var Steam */
-    private $client;
+    private Steam $client;
 
     public function __construct(Steam $client)
     {

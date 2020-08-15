@@ -19,10 +19,8 @@ use PHPUnit\Framework\TestCase;
 
 class ProfileServiceTest extends TestCase
 {
-    /** @var MockObject&Steam */
-    private $client;
-    /** @var ProfileService */
-    private $service;
+    private MockObject $client;
+    private ProfileService $service;
 
     protected function setUp(): void
     {

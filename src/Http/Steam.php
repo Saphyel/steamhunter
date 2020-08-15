@@ -8,10 +8,8 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class Steam
 {
-    /** @var HttpClientInterface */
-    private $client;
-    /** @var string */
-    private $apiKey;
+    private HttpClientInterface $client;
+    private string $apiKey;
 
     public function __construct(HttpClientInterface $client, string $apiKey)
     {

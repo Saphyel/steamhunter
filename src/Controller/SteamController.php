@@ -19,8 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 final class SteamController extends AbstractController
 {
-    /** @var CacheItemPoolInterface */
-    private $cache;
+    private CacheItemPoolInterface $cache;
 
     public function __construct(CacheItemPoolInterface $cache)
     {

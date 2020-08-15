@@ -11,12 +11,9 @@ use App\Transformer\GameProgressionTransformer;
 
 final class AchievementService
 {
-    /** @var StatsRepository */
-    private $repository;
-    /** @var AchievementTransformer */
-    private $achievementTransformer;
-    /** @var GameProgressionTransformer */
-    private $progressionTransformer;
+    private StatsRepository $repository;
+    private AchievementTransformer $achievementTransformer;
+    private GameProgressionTransformer $progressionTransformer;
 
     public function __construct(
         StatsRepository $repository,

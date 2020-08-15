@@ -14,14 +14,10 @@ use App\Transformer\ProfileTransformer;
 
 final class ProfileService
 {
-    /** @var UserRepository */
-    private $userRepository;
-    /** @var PlayerRepository */
-    private $playerRepository;
-    /** @var ProfileTransformer */
-    private $profileTransformer;
-    /** @var GameTransformer */
-    private $gameTransformer;
+    private UserRepository $userRepository;
+    private PlayerRepository $playerRepository;
+    private ProfileTransformer $profileTransformer;
+    private GameTransformer $gameTransformer;
 
     public function __construct(
         UserRepository $userRepository,

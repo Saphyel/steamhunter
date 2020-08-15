@@ -10,8 +10,7 @@ class UserRepository
 {
     private const RESOURCE = 'ISteamUser/';
 
-    /** @var Steam */
-    private $client;
+    private Steam $client;
 
     public function __construct(Steam $client)
     {
