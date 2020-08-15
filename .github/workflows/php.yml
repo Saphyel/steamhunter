@@ -1,0 +1,95 @@
+name: PHP code quality
+
+on:
+  push:
+    branches-ignore: [ 'docs**' ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Get PHP packages
+    container:
+      image: saphyel/php:latest
+      volumes:
+        - /home/runner/work/steamhunter/steamhunter:/app/
+      env:
+        APP_ENV: dev
+        COMPOSER_ALLOW_SUPERUSER: 1
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Validate composer files
+      run: composer validate
+
+    - name: Cache Composer package
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      if: steps.composer-cache.outputs.cache-hit != 'true'
+      run: composer install --no-progress --no-suggest
+
+  check:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Check code
+    container:
+      image: saphyel/php:latest
+      volumes:
+        - /home/runner/work/steamhunter/steamhunter:/app/
+      env:
+        APP_ENV: dev
+        COMPOSER_ALLOW_SUPERUSER: 1
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Composer package
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Run code style checker
+      run: composer cs-checker
+
+    - name: Run static analysis
+      run: |
+        bin/console cache:clear --quiet
+        composer phpstan
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+    name: Test code
+    container:
+      image: saphyel/php:latest
+      volumes:
+        - /home/runner/work/steamhunter/steamhunter:/app/
+      env:
+        APP_ENV: dev
+        COMPOSER_ALLOW_SUPERUSER: 1
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Cache Composer package
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Run unit tests
+      run: composer test
