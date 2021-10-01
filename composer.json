@@ -10,26 +10,26 @@
         "ext-iconv": "*",
         "ext-json": "*",
         "phpdocumentor/reflection-docblock": "^5.2",
-        "sensio/framework-extra-bundle": "^5.5",
-        "symfony/cache": "5.2.*",
-        "symfony/console": "5.2.*",
-        "symfony/dotenv": "5.2.*",
-        "symfony/flex": "^1.3.1",
-        "symfony/framework-bundle": "5.2.*",
-        "symfony/http-client": "5.2.*",
-        "symfony/monolog-bundle": "^3.5",
-        "symfony/property-access": "5.2.*",
-        "symfony/serializer": "5.2.*",
-        "symfony/twig-bundle": "5.2.*",
-        "symfony/yaml": "5.2.*"
+        "sensio/framework-extra-bundle": "^5.6",
+        "symfony/cache": "5.3.*",
+        "symfony/console": "5.3.*",
+        "symfony/dotenv": "5.3.*",
+        "symfony/flex": "^1.16.1",
+        "symfony/framework-bundle": "5.3.*",
+        "symfony/http-client": "5.3.*",
+        "symfony/monolog-bundle": "^3.7",
+        "symfony/property-access": "5.3.*",
+        "symfony/serializer": "5.3.*",
+        "symfony/twig-bundle": "5.3.*",
+        "symfony/yaml": "5.3.*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.16",
-        "phpstan/phpstan": "^0.12.37",
-        "phpstan/phpstan-phpunit": "^0.12.16",
-        "phpstan/phpstan-symfony": "^0.12.7",
-        "phpunit/phpunit": "^9.3",
-        "symfony/web-profiler-bundle": "^5.1"
+        "friendsofphp/php-cs-fixer": "^3.1",
+        "phpstan/phpstan": "^0.12.99",
+        "phpstan/phpstan-phpunit": "^0.12.22",
+        "phpstan/phpstan-symfony": "^0.12.44",
+        "phpunit/phpunit": "^9.5",
+        "symfony/web-profiler-bundle": "^5.3"
     },
     "config": {
         "optimize-autoloader": true,
@@ -69,7 +69,7 @@
             "@auto-scripts"
         ],
         "test": "phpunit --testdox",
-        "cs-fixer": "php-cs-fixer fix --verbose --diff-format=udiff",
+        "cs-fixer": "php-cs-fixer fix --verbose",
         "cs-checker": "@cs-fixer --dry-run",
         "phpstan": "phpstan analyse src tests --memory-limit=200m"
     },
@@ -79,7 +79,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "5.2.*"
+            "require": "5.3.*"
         }
     }
 }

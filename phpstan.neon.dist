@@ -2,6 +2,8 @@ parameters:
     level: 7
     symfony:
         container_xml_path: '%rootDir%/../../../var/cache/dev/App_KernelDevDebugContainer.xml'
+    scanDirectories:
+        - var/cache/dev/Symfony/Config
     checkGenericClassInNonGenericObjectType: false
 
 includes:
