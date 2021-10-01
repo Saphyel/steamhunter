@@ -3,9 +3,7 @@
 $finder = PhpCsFixer\Finder::create()
     ->in([__DIR__.'/src', __DIR__.'/tests']);
 
-return PhpCsFixer\Config::create()
-    ->setRiskyAllowed(true)
-    ->setRules([
+return (new PhpCsFixer\Config())->setRules([
         '@Symfony' => true,
         '@Symfony:risky' => true,
         '@PHP71Migration' => true,
@@ -20,4 +18,5 @@ return PhpCsFixer\Config::create()
         'php_unit_mock' => true,
         'php_unit_method_casing' => true,
     ])
+    ->setRiskyAllowed(true)
     ->setFinder($finder);

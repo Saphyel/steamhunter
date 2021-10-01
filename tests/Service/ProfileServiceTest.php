@@ -16,6 +16,7 @@ use App\Transformer\ProfileTransformer;
 use Generator;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class ProfileServiceTest extends TestCase
 {
@@ -45,7 +46,7 @@ class ProfileServiceTest extends TestCase
     /**
      * @dataProvider idInvalidDataProvider
      *
-     * @param class-string<\Throwable> $expected
+     * @param class-string<Throwable> $expected
      */
     public function testGetUserIdError(string $expected, string $payload): void
     {
